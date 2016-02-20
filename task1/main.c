@@ -41,6 +41,10 @@ int main ()
             printf("\n");
         }
     }
+    for(i=0; i<n+1; i++)
+    {
+        free(matrix[i]);
+    }
     free(matrix);
     return(0);
 }
