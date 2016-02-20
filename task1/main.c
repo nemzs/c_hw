@@ -1,5 +1,5 @@
-/* free example */
-#include <stdlib.h>     /* malloc, calloc, realloc, free */
+#include <stdio.h>
+#include <stdlib.h>
 #define ll long long
 
 int main ()
@@ -15,8 +15,8 @@ int main ()
             matrix[i][j]=(i+1)*(j+1);
         }
     }
-    long x1,x2,y1,y2;
-    while(true){
+    int x1,x2,y1,y2;
+    while(1){
         scanf("%d",&x1);
         if(x1==0){
             break;
