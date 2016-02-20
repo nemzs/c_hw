@@ -1,6 +1,5 @@
 /* free example */
 #include <stdlib.h>     /* malloc, calloc, realloc, free */
-#include <cstdio> /* malloc, calloc, realloc, free */
 #define ll long long
 
 int main ()
