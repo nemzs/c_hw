@@ -3,23 +3,24 @@
 #include <string.h>
 #include <string.h>
 #include <stdbool.h>
-#include <cctype>
+#include <ctype.h>
 #define ll long long
 
 
-struct Array{
+
+typedef struct Array{
     char* arr;
     int used,sz;
-};
+} Array;
 
-struct people
+typedef struct people
 {
-    long id;
+    int id;
     Array name,number;
-};
-people* peoples=(people*)malloc(0*sizeof(people));
-long peopleSize=0;
-long id=1;
+} people;
+people* peoples;
+int peopleSize=0;
+int id=1;
 int needError=1;
 Array pureBuffer;
 
@@ -55,10 +56,11 @@ void cpyArray(Array* a, Array* b){
 int cmpStrings(char*a,char * b,int size_a,int size_b,int registryForce){
     if(size_a!=size_b) return(-1);
     for(int i=0;i<size_a;i++){
-        if(registryForce)
+        if(registryForce){
             if(a[i]!=b[i]){
                 return(-1);
             }
+        }
          else
         if(tolower(a[i])!=tolower(b[i])){
             return(-1);
@@ -323,6 +325,7 @@ FILE* readString(Array* s,FILE * ptrFile){
 int main (int argc, char* argv[])
 {
     //argv[1] = "test.txt";
+    peoples=(people*)malloc(0*sizeof(people));
     FILE * file;
     if(file=fopen(argv[1],"r"))
     {
