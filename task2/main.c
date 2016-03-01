@@ -20,6 +20,7 @@ typedef struct people
 } people;
 people* peoples;
 int peopleSize=0;
+char buff[255];
 int id=1;
 int needError=1;
 Array pureBuffer;
@@ -140,12 +141,25 @@ void printPeople(people out)
 
 }
 
+void itoa_C(int a){
+    char b[255];
+    for(int i=0;i<255;i++) b[i]=buff[i]=0;
+    int l=0,r=0;
+    while(a>0){
+        char c=(a%10)+'0';
+        a/=10;
+        b[l++]=c;
+    }
+    for(int i=l-1;i>=0;i--){
+        buff[r++]=b[i];
+    }
+}
+
 void changeNumber(Array* id,Array* number)
 {
     for(int i=0; i<peopleSize; i++)
     {
-        char buff[255];
-        itoa(peoples[i].id,buff,10);
+        itoa_C(peoples[i].id);//loads to buff
         if(!cmpStrings(buff,id->arr,strlen(buff),id->used,0))
         {
             kill_str(peoples[i].number.arr);
@@ -159,8 +173,7 @@ void changeName(Array* id,Array* name)
 {
     for(int i=0; i<peopleSize; i++)
     {
-        char buff[255];
-        itoa(peoples[i].id,buff,10);
+        itoa_C(peoples[i].id);
         if(!cmpStrings(buff,id->arr,strlen(buff),id->used,0))
         {
             kill_str(peoples[i].name.arr);
@@ -322,9 +335,12 @@ FILE* readString(Array* s,FILE * ptrFile){
   return(ptrFile);
 }
 
+
+
 int main (int argc, char* argv[])
 {
     //argv[1] = "test.txt";
+
     peoples=(people*)malloc(0*sizeof(people));
     FILE * file;
     if(file=fopen(argv[1],"r"))
@@ -434,7 +450,7 @@ int main (int argc, char* argv[])
         }
     }
     freopen(argv[1],"w",stdout);
-    printf("\n%d\n",validNumbers);
+    printf("%d\n",validNumbers);
     for(int i=0; i<peopleSize; i++)
     {
         if(peoples[i].id!=-1)
