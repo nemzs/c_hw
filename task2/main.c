@@ -3,7 +3,6 @@
 #include <string.h>
 #include <string.h>
 #include <stdbool.h>
-#include <windows.h>
 #include <cctype>
 #define ll long long
 
