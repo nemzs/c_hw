@@ -315,7 +315,7 @@ int validId(Array* stringId)
 FILE* readString(Array* s,FILE * ptrFile){
     int c, counter = 0;
 
-    if (ptrFile == NULL) perror ("Ошибка открытия файла");
+    if (ptrFile == NULL) perror ("ќшибка открыти¤ файла");
     else
     {
         do
@@ -345,7 +345,7 @@ int main (int argc, char* argv[])
     FILE * file;
     if(file=fopen(argv[1],"r"))
     {
-        long buffSize;
+        int buffSize;
         fscanf(file,"%d",&buffSize);
         for(int i=0;i<buffSize;i++){
             Array name,number;
@@ -441,7 +441,7 @@ int main (int argc, char* argv[])
         }
     }
     freeArray(&type);
-    long validNumbers=0;
+    int validNumbers=0;
     for(int i=0; i<peopleSize; i++)
     {
         if(peoples[i].id!=-1)
