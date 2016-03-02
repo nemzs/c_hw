@@ -391,7 +391,7 @@ int main (int argc, char* argv[])
             }
         }
     }
-    //fclose(file);
+    fclose(file);
     /*Array type;
     initArray(&type,1);
     while(cmpStrings(type.arr,"exit",type.used,4,1))
