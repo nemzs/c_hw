@@ -43,7 +43,7 @@ void pushArray(Array *a, char element){
 }
 
 void freeArray(Array *a){
-    free(a->arr);
+    //free(a->arr);
     a->arr=NULL;
     a->used=a->sz=0;
 }
@@ -335,6 +335,39 @@ FILE* readString(Array* s,FILE * ptrFile){
   return(ptrFile);
 }
 
+void goSave(char* name){
+    int validNumbers=0;
+    for(int i=0; i<peopleSize; i++)
+    {
+        if(peoples[i].id!=-1)
+        {
+            validNumbers++;
+        }
+    }
+    FILE * file;
+    file = fopen(name,"w");
+    fprintf(file,"%d\n",validNumbers);
+    for(int i=0; i<peopleSize; i++)
+    {
+        if(peoples[i].id!=-1)
+        {
+            //printf("%d\n",peoples[i].name.used);
+            for(int j=0; j<peoples[i].name.used; j++)
+            {
+                fprintf(file,"%c",peoples[i].name.arr[j]);
+            }
+            fprintf(file," ");
+            for(int j=0; j<peoples[i].number.used; j++)
+            {
+                fprintf(file,"%c",peoples[i].number.arr[j]);
+            }
+            fprintf(file,"\n");
+        }
+    }
+    fclose(file);
+
+}
+
 
 
 int main (int argc, char* argv[])
@@ -346,15 +379,16 @@ int main (int argc, char* argv[])
     if(file=fopen(argv[1],"r"))
     {
         int buffSize;
-        fscanf(file,"%d",&buffSize);
-        for(int i=0;i<buffSize;i++){
-            Array name,number;
-            initArray(&name,1);
-            initArray(&number,1);
-            file =readString(&name,file);
-            file = readString(&number,file);
-            //prints(name.arr,name.used);printf("\n");
-            add(&name,&number);
+        if(fscanf(file,"%d",&buffSize)>0){
+            for(int i=0;i<buffSize;i++){
+                Array name,number;
+                initArray(&name,1);
+                initArray(&number,1);
+                file =readString(&name,file);
+                file = readString(&number,file);
+                //prints(name.arr,name.used);printf("\n");
+                add(&name,&number);
+            }
         }
     }
     fclose(file);
@@ -439,36 +473,8 @@ int main (int argc, char* argv[])
         {
             PANIC();
         }
+        goSave(argv[1]);
     }
     freeArray(&type);
-    int validNumbers=0;
-    for(int i=0; i<peopleSize; i++)
-    {
-        if(peoples[i].id!=-1)
-        {
-            validNumbers++;
-        }
-    }
-    freopen(argv[1],"w",stdout);
-    printf("%d\n",validNumbers);
-    for(int i=0; i<peopleSize; i++)
-    {
-        if(peoples[i].id!=-1)
-        {
-            //printf("%d\n",peoples[i].name.used);
-            for(int j=0; j<peoples[i].name.used; j++)
-            {
-                printf("%c",peoples[i].name.arr[j]);
-            }
-            printf(" ");
-            for(int j=0; j<peoples[i].number.used; j++)
-            {
-
-                printf("%c",peoples[i].number.arr[j]);
-            }
-            printf("\n");
-        }
-    }
-    fclose(stdout);
     return(0);
 }
