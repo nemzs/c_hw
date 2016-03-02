@@ -376,7 +376,7 @@ int main (int argc, char* argv[])
 
     peoples=(people*)malloc(0*sizeof(people));
     FILE * file;
-   /* if(file=fopen(argv[1],"r"))
+    if(file=fopen(argv[1],"r"))
     {
         int buffSize;
         if(fscanf(file,"%d",&buffSize)>0){
@@ -390,7 +390,7 @@ int main (int argc, char* argv[])
                 //add(&name,&number);
             }
         }
-    }*/
+    }
     //fclose(file);
     /*Array type;
     initArray(&type,1);
