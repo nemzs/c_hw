@@ -387,7 +387,7 @@ int main (int argc, char* argv[])
                 file =readString(&name,file);
                 file = readString(&number,file);
                 //prints(name.arr,name.used);printf("\n");
-                add(&name,&number);
+                //add(&name,&number);
             }
         }
     }
