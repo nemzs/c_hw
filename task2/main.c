@@ -392,7 +392,7 @@ int main (int argc, char* argv[])
         }
     fclose(file);
     }
-    /*Array type;
+    Array type;
     initArray(&type,1);
     while(cmpStrings(type.arr,"exit",type.used,4,1))
     {
@@ -475,6 +475,6 @@ int main (int argc, char* argv[])
         }
         goSave(argv[1]);
     }
-    freeArray(&type);*/
+    freeArray(&type);
     return(0);
 }
