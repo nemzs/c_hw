@@ -373,7 +373,7 @@ void goSave(char* name){
 int main (int argc, char* argv[])
 {
     //argv[1] = "test.txt";
-
+/*
     peoples=(people*)malloc(0*sizeof(people));
     FILE * file;
     if(file=fopen(argv[1],"r"))
@@ -402,7 +402,7 @@ int main (int argc, char* argv[])
         readString(&type,stdin);
         if(!cmpStrings(type.arr,"create",type.used,6,1))
         {
-            /*flag++;
+            flag++;
             Array name,number;
             initArray(&name,1);
             initArray(&number,1);
@@ -410,7 +410,7 @@ int main (int argc, char* argv[])
             readString(&number,stdin);
             if(isName(&name)&&isNumber(&number))
                 add(&name,&number);
-            else PANIC();*/
+            else PANIC();
         }
         if(!cmpStrings(type.arr,"delete",type.used,6,1))
         {
@@ -475,6 +475,6 @@ int main (int argc, char* argv[])
         }
         goSave(argv[1]);
     }
-    freeArray(&type);
+    freeArray(&type);*/
     return(0);
 }
