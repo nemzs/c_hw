@@ -386,7 +386,7 @@ int main (int argc, char* argv[])
                 initArray(&number,1);
                 file =readString(&name,file);
                 file = readString(&number,file);
-                //prints(name.arr,name.used);printf("\n");
+                prints(name.arr,name.used);printf("\n");
                 add(&name,&number);
             }
         }
