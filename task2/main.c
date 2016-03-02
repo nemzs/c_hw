@@ -375,7 +375,7 @@ int main (int argc, char* argv[])
     //argv[1] = "test.txt";
 
     peoples=(people*)malloc(0*sizeof(people));
-    //FILE * file;
+    FILE * file;
    /* if(file=fopen(argv[1],"r"))
     {
         int buffSize;
