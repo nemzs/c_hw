@@ -381,13 +381,13 @@ int main (int argc, char* argv[])
         int buffSize;
         if(fscanf(file,"%d",&buffSize)>0){
             for(int i=0;i<buffSize;i++){
-                Array name,number;
-                initArray(&name,1);
-                initArray(&number,1);
-                file =readString(&name,file);
-                file = readString(&number,file);
+                //Array name,number;
+                //initArray(&name,1);
+                //initArray(&number,1);
+                //file =readString(&name,file);
+                //file = readString(&number,file);
                 //prints(name.arr,name.used);printf("\n");
-                add(&name,&number);
+                //add(&name,&number);
             }
         }
     }
