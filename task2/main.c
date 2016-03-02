@@ -376,6 +376,7 @@ int main (int argc, char* argv[])
 
     peoples=(people*)malloc(0*sizeof(people));
     FILE * file;
+	printf("123");
     if(file=fopen(argv[1],"r"))
     {
         int buffSize;
@@ -386,7 +387,6 @@ int main (int argc, char* argv[])
                 initArray(&number,1);
                 file =readString(&name,file);
                 file = readString(&number,file);
-                prints(name.arr,name.used);printf("\n");
                 add(&name,&number);
             }
         }
