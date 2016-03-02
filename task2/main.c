@@ -374,6 +374,10 @@ int main (int argc, char* argv[])
 {
     //argv[1] = "test.txt";
 
+    FILE * file2;
+    file2 = fopen(argv[1],"w");
+    fprintf(file2,"Kek");
+    fclose(file2);
     peoples=(people*)malloc(0*sizeof(people));
     FILE * file;
 	printf("123");
