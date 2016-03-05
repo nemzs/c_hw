@@ -8,7 +8,8 @@
 
 
 
-typedef struct Array{
+typedef struct Array
+{
     char* arr;
     int used,sz;
 } Array;
@@ -25,57 +26,71 @@ int id=1;
 int needError=1;
 Array pureBuffer;
 
-void initArray(Array *a,int initialSize){
+void initArray(Array *a,int initialSize)
+{
     a->arr = (char*)malloc(initialSize * sizeof(char));
     a->used=0;
     a->sz=initialSize;
 }
 
-void pushArray(Array *a, char element){
-    if(a->sz==a->used){
+void pushArray(Array *a, char element)
+{
+    if(a->sz==a->used)
+    {
         a->sz*=2;
         a->arr = (char*)realloc(a->arr,a->sz*sizeof(char));
-        for(int i=a->used;i<a->sz;i++){
+        for(int i=a->used; i<a->sz; i++)
+        {
             a->arr[i]=0;
         }
     }
     a->arr[a->used++]=element;
 }
 
-void freeArray(Array *a){
+void freeArray(Array *a)
+{
     free(a->arr);
     a->arr=NULL;
     a->used=a->sz=0;
 }
 
-void cpyArray(Array* a, Array* b){
-    for(int i=0;i<b->used;i++){
+void cpyArray(Array* a, Array* b)
+{
+    for(int i=0; i<b->used; i++)
+    {
         pushArray(a,b->arr[i]);
     }
 }
 
-int cmpStrings(char*a,char * b,int size_a,int size_b,int registryForce){
+int cmpStrings(char*a,char * b,int size_a,int size_b,int registryForce)
+{
     if(size_a!=size_b) return(-1);
-    for(int i=0;i<size_a;i++){
-        if(registryForce){
-            if(a[i]!=b[i]){
+    for(int i=0; i<size_a; i++)
+    {
+        if(registryForce)
+        {
+            if(a[i]!=b[i])
+            {
                 return(-1);
             }
         }
-         else
-        if(tolower(a[i])!=tolower(b[i])){
+        else if(tolower(a[i])!=tolower(b[i]))
+        {
             return(-1);
         }
     }
     return(0);
 }
-int strstrStrings(char*a,char * b,int size_a,int size_b){
+int strstrStrings(char*a,char * b,int size_a,int size_b)
+{
     int l=0;
-    for(int i=0;i<size_a;i++){
+    for(int i=0; i<size_a; i++)
+    {
         if(l<size_b)
-        if(tolower(a[i])==tolower(b[l])){
-            l++;
-        }
+            if(tolower(a[i])==tolower(b[l]))
+            {
+                l++;
+            }
     }
     if(size_b==l)
         return(0);
@@ -95,10 +110,12 @@ int add(Array* name, Array* number)
     peoples=buf;
     initArray(&peoples[peopleSize-1].name,1);
     initArray(&peoples[peopleSize-1].number,1);
-    for(int i=0;i<name->used;i++){
+    for(int i=0; i<name->used; i++)
+    {
         pushArray(&peoples[peopleSize-1].name,name->arr[i]);
     }
-    for(int i=0;i<number->used;i++){
+    for(int i=0; i<number->used; i++)
+    {
         pushArray(&peoples[peopleSize-1].number,number->arr[i]);
     }
     return(id-1);
@@ -128,34 +145,37 @@ void del(long id)
 void printPeople(people out)
 {
     printf("%d ",out.id);
-            fflush(stdout);
+    fflush(stdout);
     for(int j=0; j<out.name.used; j++)
     {
         printf("%c",out.name.arr[j]);
-            fflush(stdout);
+        fflush(stdout);
     }
     printf(" ");
-            fflush(stdout);
+    fflush(stdout);
     for(int j=0; j<out.number.used; j++)
     {
         printf("%c",out.number.arr[j]);
-            fflush(stdout);
+        fflush(stdout);
     }
     printf("\n");
-            fflush(stdout);
+    fflush(stdout);
 
 }
 
-void itoa_C(int a){
+void itoa_C(int a)
+{
     char b[255];
-    for(int i=0;i<255;i++) b[i]=buff[i]=0;
+    for(int i=0; i<255; i++) b[i]=buff[i]=0;
     int l=0,r=0;
-    while(a>0){
+    while(a>0)
+    {
         char c=(a%10)+'0';
         a/=10;
         b[l++]=c;
     }
-    for(int i=l-1;i>=0;i--){
+    for(int i=l-1; i>=0; i--)
+    {
         buff[r++]=b[i];
     }
 }
@@ -222,8 +242,10 @@ int isName(Array* name)
     return(1);
 }
 
-void PANIC(){
-    if(needError){
+void PANIC()
+{
+    if(needError)
+    {
         needError=0;
         printf("PANIC!!!\n");
         fflush(stdout);
@@ -235,7 +257,7 @@ void prints(char* out,int sz)
     for(int i=0; i<sz; i++)
     {
         printf("%c",out[i]);
-            fflush(stdout);
+        fflush(stdout);
     }
 }
 
@@ -294,7 +316,7 @@ void debug_peoples()
     for(int i=0; i<peopleSize; i++)
     {
         printf("%d ",peoples[i].id);
-            fflush(stdout);
+        fflush(stdout);
         for(int j=0; j<peoples[i].name.sz; j++)
         {
             printf("%c",peoples[i].name.arr[j]);
@@ -307,7 +329,7 @@ void debug_peoples()
             fflush(stdout);
         }
         printf("\n");
-            fflush(stdout);
+        fflush(stdout);
     }
 }
 
@@ -323,31 +345,38 @@ int validId(Array* stringId)
     return(id);
 }
 
-FILE* readString(Array* s,FILE * ptrFile){
+FILE* readString(Array* s,FILE * ptrFile)
+{
     int c, counter = 0;
 
-    if (ptrFile == NULL){ PANIC();
+    if (ptrFile == NULL)
+    {
+        PANIC();
     }
     else
     {
         do
         {
-        c = fgetc(ptrFile);
-        //printf("%c",c);
-        if(c=='\n') needError=1;
-        if(c==' '||c=='\n'&&counter>0){
-            break;
+            c = fgetc(ptrFile);
+            //printf("%c",c);
+            if(c=='\n') needError=1;
+            if(c==' '||c=='\n'&&counter>0)
+            {
+                break;
+            }
+            if(c!=' '&&c!='\n')
+            {
+                pushArray(s,c);
+                counter++;
+            }
         }
-        if(c!=' '&&c!='\n'){
-            pushArray(s,c);
-            counter++;
-        }
-        } while (c != EOF); // пока не конец файла
-  }
-  return(ptrFile);
+        while (c != EOF);   // пока не конец файла
+    }
+    return(ptrFile);
 }
 
-void goSave(char* name){
+void goSave(char* name)
+{
     int validNumbers=0;
     for(int i=0; i<peopleSize; i++)
     {
@@ -359,7 +388,7 @@ void goSave(char* name){
     FILE * file;
     file = fopen(name,"w");
     fprintf(file,"%d\n",validNumbers);
-            fflush(stdout);
+    fflush(stdout);
     for(int i=0; i<peopleSize; i++)
     {
         if(peoples[i].id!=-1)
@@ -368,13 +397,13 @@ void goSave(char* name){
             for(int j=0; j<peoples[i].name.used; j++)
             {
                 fprintf(file,"%c",peoples[i].name.arr[j]);
-            fflush(stdout);
+                fflush(stdout);
             }
             fprintf(file," ");
             for(int j=0; j<peoples[i].number.used; j++)
             {
                 fprintf(file,"%c",peoples[i].number.arr[j]);
-            fflush(stdout);
+                fflush(stdout);
             }
             fprintf(file,"\n");
             fflush(stdout);
@@ -394,8 +423,10 @@ int main (int argc, char* argv[])
     if(file=fopen(argv[1],"r"))
     {
         int buffSize;
-        if(fscanf(file,"%d",&buffSize)>0){
-            for(int i=0;i<buffSize;i++){
+        if(fscanf(file,"%d",&buffSize)>0)
+        {
+            for(int i=0; i<buffSize; i++)
+            {
                 Array name,number;
                 initArray(&name,1);
                 initArray(&number,1);
@@ -404,7 +435,7 @@ int main (int argc, char* argv[])
                 add(&name,&number);
             }
         }
-    fclose(file);
+        fclose(file);
     }
     Array type;
     initArray(&type,1);
@@ -446,19 +477,18 @@ int main (int argc, char* argv[])
             readString(&id,stdin);
             readString(&type2,stdin);
             readString(&changeTo,stdin);
-//            if(purenumber(id)){
-            //              printf("Bad request");
-            //        }
             if(!cmpStrings(type2.arr,"number",type2.used,6,1))
             {
                 if(isNumber(&id)&&isNumber(&changeTo))
-                    changeNumber(&id,&changeTo); else
+                    changeNumber(&id,&changeTo);
+                else
                     PANIC();
             }
             else if(!cmpStrings(type2.arr,"name",type2.used,4,1))
             {
                 if(isNumber(&id)&&isName(&changeTo))
-                    changeName(&id,&changeTo); else
+                    changeName(&id,&changeTo);
+                else
                     PANIC();
             }
             else
