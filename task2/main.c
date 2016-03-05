@@ -128,16 +128,21 @@ void del(long id)
 void printPeople(people out)
 {
     printf("%d ",out.id);
+            fflush(stdout);
     for(int j=0; j<out.name.used; j++)
     {
         printf("%c",out.name.arr[j]);
+            fflush(stdout);
     }
     printf(" ");
+            fflush(stdout);
     for(int j=0; j<out.number.used; j++)
     {
         printf("%c",out.number.arr[j]);
+            fflush(stdout);
     }
     printf("\n");
+            fflush(stdout);
 
 }
 
@@ -221,6 +226,7 @@ void PANIC(){
     if(needError){
         needError=0;
         printf("PANIC!!!\n");
+        fflush(stdout);
     }
 }
 
@@ -229,6 +235,7 @@ void prints(char* out,int sz)
     for(int i=0; i<sz; i++)
     {
         printf("%c",out[i]);
+            fflush(stdout);
     }
 }
 
@@ -287,16 +294,20 @@ void debug_peoples()
     for(int i=0; i<peopleSize; i++)
     {
         printf("%d ",peoples[i].id);
+            fflush(stdout);
         for(int j=0; j<peoples[i].name.sz; j++)
         {
             printf("%c",peoples[i].name.arr[j]);
+            fflush(stdout);
         }
         printf(" ");
         for(int j=0; j<peoples[i].number.sz; j++)
         {
             printf("%c",peoples[i].number.arr[j]);
+            fflush(stdout);
         }
         printf("\n");
+            fflush(stdout);
     }
 }
 
@@ -315,7 +326,8 @@ int validId(Array* stringId)
 FILE* readString(Array* s,FILE * ptrFile){
     int c, counter = 0;
 
-    if (ptrFile == NULL) perror ("ќшибка открыти¤ файла");
+    if (ptrFile == NULL){ PANIC();
+    }
     else
     {
         do
@@ -347,6 +359,7 @@ void goSave(char* name){
     FILE * file;
     file = fopen(name,"w");
     fprintf(file,"%d\n",validNumbers);
+            fflush(stdout);
     for(int i=0; i<peopleSize; i++)
     {
         if(peoples[i].id!=-1)
@@ -355,13 +368,16 @@ void goSave(char* name){
             for(int j=0; j<peoples[i].name.used; j++)
             {
                 fprintf(file,"%c",peoples[i].name.arr[j]);
+            fflush(stdout);
             }
             fprintf(file," ");
             for(int j=0; j<peoples[i].number.used; j++)
             {
                 fprintf(file,"%c",peoples[i].number.arr[j]);
+            fflush(stdout);
             }
             fprintf(file,"\n");
+            fflush(stdout);
         }
     }
     fclose(file);
@@ -373,14 +389,8 @@ void goSave(char* name){
 int main (int argc, char* argv[])
 {
     //argv[1] = "test.txt";
-
-    FILE * file2;
-    file2 = fopen(argv[1],"w");
-    fprintf(file2,"Kek");
-    fclose(file2);
     peoples=(people*)malloc(0*sizeof(people));
     FILE * file;
-	printf("123");
     if(file=fopen(argv[1],"r"))
     {
         int buffSize;
