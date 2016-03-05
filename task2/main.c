@@ -43,7 +43,7 @@ void pushArray(Array *a, char element){
 }
 
 void freeArray(Array *a){
-    //free(a->arr);
+    free(a->arr);
     a->arr=NULL;
     a->used=a->sz=0;
 }
