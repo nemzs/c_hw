@@ -19,6 +19,7 @@ rational::rational(int a) {
 rational::rational(int a, int b) {
     num = a;
     denom = b;
+    goPrime();
 }
 
 int rational::getNum() const {
