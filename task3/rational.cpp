@@ -1,5 +1,4 @@
 #include <iostream>
-#include <algorithm>
 #include "rational.h"
 
 using namespace std;

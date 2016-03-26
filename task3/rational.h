@@ -6,7 +6,8 @@
 #define TASK3_RATIONAL_H
 
 
-#endif //TASK3_RATIONAL_H
+#include <algorithm>
+
 
 class rational {
 private:
@@ -33,3 +34,5 @@ public:
     rational operator/(rational const &) const;
 
 };
+
+#endif TASK3_RATIONAL_H
