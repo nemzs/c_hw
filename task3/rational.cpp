@@ -48,7 +48,3 @@ rational rational::operator*(const rational &right) const {
 rational rational::operator/(const rational &right) const {
     return (rational(this->getNum() * right.getDenom(), this->getDenom() * right.getNum()));
 }
-
-int main() {
-    return 0;
-}
