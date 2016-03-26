@@ -17,8 +17,7 @@ rational::rational(int a) {
 
 rational::rational(int a, int b) {
     num = a;
-    if (b != 0)
-        denom = b;
+    denom = b;
 }
 
 int rational::getNum() const {
