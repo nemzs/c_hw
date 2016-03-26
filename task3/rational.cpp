@@ -13,6 +13,7 @@ void rational::goPrime() {
 
 rational::rational(int a) {
     num = a;
+    denom = 1;
 }
 
 rational::rational(int a, int b) {
