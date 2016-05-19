@@ -7,15 +7,15 @@
 using namespace std;
 
 //constructors
-lazy_string::lazy_string() : start(0), len(0), some(make_shared<string>("")) { };
+lazy_string::lazy_string() : start(0), len(0), some(std::make_shared<std::string>("")) { };
 
-lazy_string::lazy_string(string str) : start(0), len(str.length()), some(make_shared<string>(str)) { };
+lazy_string::lazy_string(string str) : start(0), len(str.length()), some(std::make_shared<std::string>(str)) { };
 
 lazy_string::lazy_string(size_t start, size_t len, std::shared_ptr<std::string> some) : start(start), len(len),
                                                                                         some(some) { };
 
 istream &operator>>(istream &in, lazy_string &ns) {
-    auto tmp = make_shared<string>();
+    auto tmp = std::make_shared<string>();
     in >> *tmp;
     ns.start = 0;
     ns.len = (*tmp).length();
@@ -67,7 +67,7 @@ char lazy_string::operator[](size_t index) const {
 
 lazy_string::char_ref &lazy_string::char_ref::operator=(char nchar) {
     if (lazy->some.use_count() > 1) {
-        lazy->some = make_shared<string>(lazy->some->substr(lazy->start, lazy->len));
+        lazy->some = std::make_shared<std::string>(lazy->some->substr(lazy->start, lazy->len));
         lazy->start = 0;
     }
     (*lazy->some)[index + lazy->start] = nchar;
