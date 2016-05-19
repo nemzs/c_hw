@@ -1,3 +1,6 @@
+#ifndef TASK6_LAZY_STRING_H
+#define TASK6_LAZY_STRING_H
+
 #include <iostream>
 #include <cstdio>
 #include <memory>
@@ -50,4 +53,6 @@ private:
     size_t start, len;
 };
 
+
 #endif //TASK6_LAZY_STRING_H
+
