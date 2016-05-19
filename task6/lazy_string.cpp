@@ -6,6 +6,14 @@
 
 using namespace std;
 
+//constructors
+lazy_string::lazy_string() : start(0), len(0), some(make_shared<string>("")) { };
+
+lazy_string::lazy_string(string str) : start(0), len(str.length()), some(make_shared<string>(str)) { };
+
+lazy_string::lazy_string(size_t start, size_t len, std::shared_ptr<std::string> some) : start(start), len(len),
+                                                                                        some(some) { };
+
 istream &operator>>(istream &in, lazy_string &ns) {
     auto tmp = make_shared<string>();
     in >> *tmp;
@@ -40,7 +48,10 @@ lazy_string lazy_string::substr(size_t st) {
 }
 
 
-lazy_string::char_ref::char_ref(lazy_string *some, size_t index) : lazy(some), index(index) { }
+lazy_string::char_ref::char_ref(lazy_string * some, size_t
+index) :
+
+lazy(some), index(index) { }
 
 lazy_string::char_ref lazy_string::operator[](size_t i) {
     return char_ref(const_cast<lazy_string *>(this), i);
@@ -57,6 +68,7 @@ char lazy_string::operator[](size_t index) const {
 lazy_string::char_ref &lazy_string::char_ref::operator=(char nchar) {
     if (lazy->some.use_count() > 1) {
         lazy->some = make_shared<string>(lazy->some->substr(lazy->start, lazy->len));
+        lazy->start = 0;
     }
     (*lazy->some)[index + lazy->start] = nchar;
     return (*this);
@@ -75,23 +87,16 @@ size_t lazy_string::length() {
 size_t lazy_string::size() {
     return len;
 }
-
-/*int main()
-{
-    freopen("input.txt","r",stdin);
+/*
+int main() {
+    freopen("input.txt", "r", stdin);
     //freopen("output.txt","w",stdout);
     string s = "tniceing!!!";
     lazy_string test("test");
-    cin>>test;
-    cout<<test.length();
-    cout<<test.size();
+    cin >> test;
+    cout << test.length();
+    cout << test.size();
     //cout<<test;
-    /*
-    lazy_string sub_test = test.substr(0,9);
-    cout<<sub_test;cout<<endl;*/
-/*lazy_string sub_test2 = sub_test.substr(5,4);
-cout<<sub_test2;*/
-/*shared_ptr<string> sp;
-sp = make_shared<string>(s);
-cout<<sp->substr(1,4);*/
-//}
+}
+*/
+

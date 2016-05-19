@@ -21,7 +21,9 @@ class lazy_string {
     };
 
 public:
-    lazy_string(std::string str) : start(0), len(str.length()), some(std::make_shared<std::string>(str)) { };
+    lazy_string();
+
+    lazy_string(const std::string str);
 
     lazy_string substr(size_t st, size_t len);
 
@@ -48,7 +50,8 @@ public:
     operator std::string();
 
 private:
-    lazy_string(size_t start, size_t len, std::shared_ptr<std::string> some) : start(start), len(len), some(some) { };
+    lazy_string(size_t start, size_t len, std::shared_ptr<std::string> some);
+
     std::shared_ptr<std::string> some;
     size_t start, len;
 };
